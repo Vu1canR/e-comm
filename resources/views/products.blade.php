@@ -26,7 +26,7 @@
 		</div>
 		<div class="wrap">
 		   <div class="search" id="search">
-		      <input type="text" class="search-input" onfocus="searchResize()" placeholder="Search...">
+		      <input type="text" class="search-input" placeholder="Search...">
 		     <!--  <div class="cat-div">
 		      	<button class="cat-drdown"></button>
 		      	<i class="fa fa-caret-down" aria-hidden="true"></i>
@@ -165,8 +165,20 @@
 	<div class="cat-nav">x-kom>Компьютерные комплектующие></div>
 	<br>
 	<div class="main-body">
-		<div class="filters"></div>
-		<div class="products-list"></div>
+		<div class="main-filters"></div>
+		<div class="products-list">
+			<div class="filter-view">
+			</div>
+			<div class="items-list">
+				<div><img class="history-photo" src="{{asset('images\13-119-140-V07.jpg')}}"></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+
+		</div>
 	</div>
 </div>
 <script>

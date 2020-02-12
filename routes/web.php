@@ -16,6 +16,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+
 Route::get('/register', 'RegistrationController@create');
 Route::post('/register', 'RegistrationController@store');
 Route::get('/login', 'SessionsController@showLoginForm');
