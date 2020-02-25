@@ -73,6 +73,7 @@
 			@endforeach
 		@endif
 	</div>	
-
+	<input type="" name="">
+	<input type="" name="">
 </body>
 </html>
