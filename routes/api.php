@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-
+use App\graphics_cards;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,3 +16,11 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Route::get('/products', function () {
+
+//     $graphics_card = App\graphics_cards::all();
+//     return $graphics_card;
+        
+     
+// });

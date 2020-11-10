@@ -3,11 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Post;
+use App\Product;
+use Illuminate\Support\Facades\Auth;
 
 class Comment extends Model
 {
 
-	protected $fillable = ['post_id', 'body'];
+	protected $fillable = ['product_id', 'body', 'user_id'];
     
 public function post(){
 
@@ -15,6 +18,18 @@ public function post(){
 
 	} 
 	
+public function product(){
 
+	return $this->belongsTo(Product::class);
+
+}
+
+public function user(){
+
+	return $this->belongsTo(User::class);
+
+}
+// Sentry::getUser()->id
+	
 
 }

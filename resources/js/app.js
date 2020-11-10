@@ -5,6 +5,7 @@
  */
 
 require('./bootstrap');
+// require('./js/home.js');
 
 window.Vue = require('vue');
 
@@ -20,6 +21,19 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('products-list', require('./components/products.vue').default);
+Vue.component('registration', require('./components/registration.vue'));
+Vue.component('product', require('./components/product.vue').default);
+Vue.component('add-product', require('./components/create.vue').default);
+Vue.component('cart', require('./components/cart.vue').default);
+Vue.component('search', require('./components/search.vue').default);
+Vue.component('cart-preview', require('./components/cart-preview.vue').default);
+Vue.component('tabs', require('./components/tabs.vue').default);
+Vue.component('tab', require('./components/tab.vue').default);
+Vue.component('test', require('./components/test.vue').default);
+Vue.component('navigation', require('./components/navigation.vue').default);
+Vue.component('header-nav', require('./components/header-nav.vue').default);
+Vue.component('bestsellers', require('./components/bestsellers.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

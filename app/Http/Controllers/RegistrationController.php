@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Hash;
+
 
 class RegistrationController extends Controller
 {
@@ -13,33 +15,64 @@ class RegistrationController extends Controller
 
 }
 
-	public function store(){
-		
-		$this->validate(request(), [
+	public function store(Request $request)
+    {
 
-		'name' => 'required',
-		'email' => 'required|email',
-		'password' => 'required|confirmed',
+        $this->validate(request(), [
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            // 'c_password' => 'required',
+            // 'email' => 'required|email|unique:users',
 
-		]);
+        ]);
 
-		// if($user->email->exists()){
-		// 	return redirect('/email-exist');
-		// }
-		try {
-			$user = User::create(request(['name', 'email', 'password']));
-		}catch( \Illuminate\Database\QueryException $e) {
+        $file = $request->file('picture');
+        $picture_name = $file->getClientOriginalName();
+        $file->move(public_path('/images/profile-pictures'), $picture_name);
+            
+        
 
-			$emessage = $e->getMessage();
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'picture' => $picture_name
+        ]);
 
-			return view('email-exist', compact('emessage'));
+        
+        
 
-		}
-		auth()->login($user);
+        auth()->login($user);
 
-		return redirect('/welcome');
+        return view('/welcome')->with('message', 'Successfully registered!');
 
-}
+    }
+
+    // public function register(Request $request)
+    // {
+    //     $validator = Validator::make($request->all(), [
+    //         'name' => 'required|max:50',
+    //         'email' => 'required|email',
+    //         'password' => 'required|min:6',
+    //         'c_password' => 'required|same:password',
+    //     ]);
+
+    //     if ($validator->fails()) {
+    //         return response()->json(['error' => $validator->errors()], 401);
+    //     }
+
+    //         $data = $request->only(['name', 'email', 'password']);
+    //         $data['password'] = bcrypt($data['password']);
+
+    //         $user = User::create($data);
+    //         $user->is_admin = 0;
+
+    //     return response()->json([
+    //         'user' => $user,
+    //         'token' => $user->createToken('bigStore')->accessToken,
+    //     ]);
+    // }
 
 }
 

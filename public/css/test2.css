@@ -1,0 +1,31 @@
+
+.products-row{
+    text-align: center;
+    margin: auto;
+    background-color: gold;
+
+}
+.products{
+    text-align: center;
+    display: inline-block;
+}
+.product{
+   
+    padding: 30px 25px;
+    background-color: darkcyan;
+
+}
+
+span{
+    
+    
+}
+
+    .product:hover{
+    
+}
+
+button{
+    margin-top: 10px;
+    text-align: center;
+}

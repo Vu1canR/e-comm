@@ -3,13 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Exception;
+use App\Order;
+use App\User;
 
 class SessionsController extends Controller
 {
     
 	public function __construct(){
 		
-		$this->middleware('guest');
+		// $this->middleware('guest', ['except' => 'logout']);
 	}
 
 	public function showLoginForm(){
@@ -18,26 +23,47 @@ class SessionsController extends Controller
 
 	}
 
-	public function login(){
-
-		if (!auth()->attempt(request(['email', 'password']))){
-
-			return back();
-		}
-
-		return redirect('/welcome');
 		
+	public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        $credentials = $request->only('email', 'password');
+        if (!Auth::attempt($credentials)) {
+            return "something is wrong";
+        }
+		return view('welcome');
+    }
+
+    
+
+	public function logout()
+	{
+		
+		try {
+		    Auth::logout();
+		    echo "logout successfully";
+		    return redirect('/welcome');
+			}
+		catch(Exception $e){
+		    echo "Connection failed: ". $e->getMessage();
+		    }
+
 	}
 
-	public function logout(){
+	public function showProfile($userId)
+	{
 		
-		auth()->logout();
-		return redirect('/welcome');
-
-	}
-
-	public function resetEmail(){
+		// $userId = Auth::id();
+		$user = User::find($userId);
+		$orders = Order::where('user_id', $userId)->with('productsList')->get();
 		
+		
+		// return $orders;
+		return view('profile', compact('orders', 'user'));
 	}
 
 }

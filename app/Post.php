@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Comment;
 
 class Post extends Model
 {
@@ -16,9 +17,6 @@ class Post extends Model
 
 	public function addComment($body){
 
-
-
-		
 		
 		$this->comments()->create(compact('body'));
 		// Comment::create([
