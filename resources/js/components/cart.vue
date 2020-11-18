@@ -12,15 +12,10 @@
 </template>
 
 <script>
-// import cart from "./product";
 
 export default {
     name: "cart",
-    props: {
-        // cart: {
-        //     required: true
-        // }
-    },
+
     data() {
         return {
             displayCart: false,
@@ -38,11 +33,6 @@ export default {
             console.log(this.cart)
             
         },
-        // updateCart() {
-        //     if (localStorage.getItem("cart"))
-        //     this.cart = JSON.parse(localStorage.getItem("cart"));
-            // this.cart = 'Fucking vue'
-        // },
 
         toLocal(){
             let stringifiedArray = JSON.stringify(this.cart);
@@ -58,22 +48,10 @@ export default {
 
     },
     mounted() {
-
-        // this.$root.$on("isAdded", product_name => {
-        //     for(var i = 0; i < this.cart.length; i++) {
-        //         if(this.cart[i].name == product_name["name"]) 
-        //         return true;
-        //         }
-        //     return false;
-        //     });
-        
-
         this.$root.$on("updateQuantity", my_array => {
             // this.cart[my_array[0]]
             this.cart[my_array[1]].quantity = my_array[0]
             this.toLocal()
-
-            
         });
 
         this.$root.$on("addProduct", product => {

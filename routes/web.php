@@ -69,7 +69,7 @@ Route::get('/usersoders', 'UserController@index');
 Route::get('/cart', 'OrderController@showCart');
 Route::post('/cart', 'OrderController@store');
 Route::get('/track', 'OrderController@track');
-Route::post('/track', 'OrderController@confirm');
+Route::put('/track/{orderId}', 'OrderController@confirmation');
 Route::get('/profile/{userId}', 'SessionsController@showProfile');
 Route::post('/profile/{order}', 'OrderController@cancelOrder');
 // Route::patch('/cart', 'OrderController@update');

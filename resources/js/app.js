@@ -30,10 +30,12 @@ Vue.component('search', require('./components/search.vue').default);
 Vue.component('cart-preview', require('./components/cart-preview.vue').default);
 Vue.component('tabs', require('./components/tabs.vue').default);
 Vue.component('tab', require('./components/tab.vue').default);
+Vue.component('user-profile', require('./components/user-profile.vue').default);
 Vue.component('test', require('./components/test.vue').default);
 Vue.component('navigation', require('./components/navigation.vue').default);
 Vue.component('header-nav', require('./components/header-nav.vue').default);
 Vue.component('bestsellers', require('./components/bestsellers.vue').default);
+Vue.component('track-order', require('./components/track-order.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

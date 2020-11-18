@@ -59,4 +59,18 @@ class OrderController extends Controller
         return view('profile');
         
     }
+
+    public function track(){
+
+        $orders = Order::where('is_delivered', '0')->get();
+        return view('track', compact('orders'));
+    }
+
+    public function confirmation($id){
+        $order = Order::find($id);
+        $order->is_delivered = 1;
+        $order->save();
+        
+        return redirect('/track');
+    }
 }

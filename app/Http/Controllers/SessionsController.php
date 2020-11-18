@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Exception;
 use App\Order;
 use App\User;
+use App\Product;
 
 class SessionsController extends Controller
 {
@@ -35,7 +36,9 @@ class SessionsController extends Controller
         if (!Auth::attempt($credentials)) {
             return "something is wrong";
         }
-		return view('welcome');
+		$products = Product::inRandomOrder()->limit(5)->get();
+
+        return view('welcome', compact('products'));
     }
 
     
@@ -57,12 +60,8 @@ class SessionsController extends Controller
 	public function showProfile($userId)
 	{
 		
-		// $userId = Auth::id();
 		$user = User::find($userId);
 		$orders = Order::where('user_id', $userId)->with('productsList')->get();
-		
-		
-		// return $orders;
 		return view('profile', compact('orders', 'user'));
 	}
 

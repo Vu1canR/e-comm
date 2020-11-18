@@ -2,7 +2,7 @@
 
     <div class="items-list">
         <div v-for="(product,index) in products" :key="product.id" class="product-div">
-            <a ref="productLink" :href="'/p/'+ product.store_code + '-' + product.name.replace(/ /g,'-').toLowerCase()" style="text-decoration:none; color:black;">
+            <a :href="'/p/'+ product.store_code + '-' + product.name.replace(/ /g,'-').toLowerCase()" style="text-decoration:none; color:black;">
                 <!-- <img class="item-photo" :src="'/images/' + product.sub_category_id + '/' + product.preview"> -->
                 <img class="item-photo" images :src="'/images/' + product.sub_category_id + '/' + product.images.split('|')[0]">
                 <ul class="specs">
@@ -15,7 +15,7 @@
                 <div class="price-cart">
                     <div class="price"><strong>{{product.price}}TJS</strong></div>
                     <div class="exp">
-                        <div class="cart"><button class="to-cart" title="Add to cart" @click.stop.prevent="addItem()"><i class="fas fa-shopping-cart"></i></button></div>
+                        <div class="cart"><button class="to-cart" title="Add to cart" @click.stop.prevent="addItem(product)"><i class="fas fa-shopping-cart"></i></button></div>
                         <div class="compare-div"><button title="Add to comparison"><i class="fas fa-balance-scale"></i></button></div>
                         <!-- <div class="compare-div"><i class="fas fa-balance-scale"></i></div> -->
                         
@@ -53,17 +53,13 @@ export default {
             console.log(this.my_array)
         },
         
-        addItem() {
-            console.log('stop clicking me')
-
-            // this.$root.$emit("addProduct", [
-            //     this.product_array["store_code"],
-            //     this.product_array["name"],
-            //     this.quantity,
-            //     this.product_array["price"]
-            // ]);
-            // this.$refs.productLink[index].preventDefault()
-
+        addItem(product) {
+            this.$root.$emit("addProduct", {
+                store_code: product["store_code"],
+                name: product["name"],
+                quantity: this.quantity,
+                price: product["price"]
+            });
         },
         displayProducts() {
             console.log(this.my_products)

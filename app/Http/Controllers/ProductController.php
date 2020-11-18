@@ -40,7 +40,6 @@ class ProductController extends Controller
     }
 
     public function create(Request $request){
-        
         $categories = Category::all();
         $subcategories = subcategory::where('category_id', 1)->pluck('id', 'name');
         return view('add', compact('categories', 'subcategories'));
@@ -48,7 +47,6 @@ class ProductController extends Controller
     }
 
     public function store(Request $request){
-
         $subcategory = $request->subcategory_id;
         $specs_obj = Spec::where('sub_cat_id', $subcategory)
                                 ->orderBy('id', 'asc')
@@ -157,21 +155,15 @@ class ProductController extends Controller
     }
 
     public function search(Request $request){
-
         $search = $request->user_input;
-        // $search_array = $request->search;
-        
         $categories = Category::all();
         $result = Product::where('name', 'like', '%'.$search.'%')->paginate(5);
-        // $result = $query;
-        // return $result;
 
         return view('search-result', compact('result', 'categories'));
     }
 
     public function axiosSearch(Request $request){
         $result = Product::where('name', 'like', '%'.$request->user_input.'%')->paginate(5);
-
         return compact('result');
     }
 
