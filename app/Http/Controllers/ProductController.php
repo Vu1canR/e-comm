@@ -42,7 +42,8 @@ class ProductController extends Controller
     public function create(Request $request){
         $categories = Category::all();
         $subcategories = subcategory::where('category_id', 1)->pluck('id', 'name');
-        return view('add', compact('categories', 'subcategories'));
+        $products = Product::all();
+        return view('add', compact('categories', 'subcategories', 'products'));
 
     }
 
@@ -139,7 +140,7 @@ class ProductController extends Controller
 
         return redirect()->back()->with('message', 'Data inserted!!!');;
     }
-    
+
     public function getId(Request $request, $category_id=null, $selected_cat_subcat=null, $specs=null){
         $category_id = $request->get('category_id');
         $subcategory_id = $request->get('subcategory_id');
@@ -152,6 +153,16 @@ class ProductController extends Controller
         $sel_cat_specs = Spec::where('sub_cat_id', $subcategory_id)->pluck('property', 'id');
         
         return compact('category_id', 'subcategories', 'specs', 'sel_cat_specs');          
+    }
+
+    public function update(Request $request){
+        $product = Product::find($request->id);
+        $product->quantity = $request->quantity;
+        $product->save();
+		$quantity = $product->quantity;
+		$id = $request->id;
+		
+        return compact('quantity', 'id');
     }
 
     public function search(Request $request){

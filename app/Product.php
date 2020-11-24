@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Comment;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
 {   
@@ -31,6 +32,10 @@ class Product extends Model
             'user_id' => $user_id,
             'product_id' => $product_id
         ]);
+    }
+
+    public function comments(){
+        return $this->HasMany(Comment::class);
     }
 
    

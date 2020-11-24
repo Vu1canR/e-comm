@@ -27,6 +27,8 @@ Route::post('/category/id', 'ProductController@getid');
 Route::post('/c4/gpus', 'ProductController@show');
 Route::get('/add', 'ProductController@create');
 Route::post('/add', 'ProductController@store');
+Route::post('/add/product-update', 'ProductController@update');
+
 
 Route::get('/register', 'RegistrationController@create');
 Route::post('/register', 'RegistrationController@store');
@@ -51,14 +53,10 @@ Route::get('/about', function () {
 
 Route::get('/cat', 'CategoriesController@showSubCategories');
 
-Route::post('/gpus/{product}', 'CommentsController@store');
+Route::post('/p/{store_code}-{product}', 'CommentsController@store');
+Route::put('/p/comment-update', 'CommentsController@update');
 Route::get('/p/{store_code}-{product}', 'ProductController@show');
-Route::get('/c-{catId}/{subCatId}-{subcat}', 'ProductController@showAll');
-
-Route::get('/gpus', function () {
-    $products = App\graphics_cards::all();
-    return view('products', compact('products'));
-});
+Route::get('/c-{catId}/{subcatId}-{subcat}', 'ProductController@showAll');
 
 Route::get('/test', function () {
     return view('test');

@@ -238,8 +238,11 @@ textarea{
     margin-top: 8px;
     padding: 6px;
     display: flex;
+    position: relative;
 }
-
+.comment-rate, .datetime{
+    display: inline-block;
+}
 .user-div, 
 .comment-div{display: inline-block;}
 
@@ -251,6 +254,28 @@ textarea{
     padding-top: 10px;
 }
 
+.quote-edit{
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    font-size: 14px;
+}
+
+.quote-edit span{
+    cursor: pointer;
+}
+.cedit-div{
+    margin-left: 9px;
+}
+.ec-btn{
+    background-color: white;
+    outline: none;
+    border-radius: 8px;
+    padding: 5px;
+    cursor: pointer;
+    border: 1px solid lightgray;
+    margin-left: 5px;
+}
 
 .profile-pic{
 
@@ -261,6 +286,7 @@ textarea{
 .user-name{
     text-align: center;
     border: 1px solid lightgrey;
+    white-space: nowrap;
 }
 
 .is-selected a{

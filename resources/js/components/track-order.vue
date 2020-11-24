@@ -24,16 +24,16 @@
                         </tr>
                 </table>
                 <div class="btn-div">
-                    <button class="od-btn"><a href="#">Details</a></button>
+                    <button class="ep-btn"><a href="#">Details</a></button>
                     <form :action="'/track/' + order.id" method="POST">
                     <input type="hidden" name="_method" value="PUT">
                     <input type="hidden" name="_token" :value="csrf">
-                    <button class="od-btn" type="submit">Confirm</button>
+                    <button class="ep-btn" type="submit">Confirm</button>
                     </form>
                     <!-- <button class="od-btn" @click="getId(order.id)">Cancel</button> -->
                     
                 </div>
-                <div style="clear: both;"></div>		
+                <div style="clear: both;"></div>	
             </div>
             
         </div>

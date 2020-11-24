@@ -13,7 +13,7 @@
 <div id="app">
     @include('nav')
     <br>
-        <product :product_array="{{$product_object}}" :comments="{{$comments}}"></product>
+        <product :product_object="{{$product_object}}" :product_comments="{{$comments}}"></product>
     <br><br>
     @include('footer')
 </div>

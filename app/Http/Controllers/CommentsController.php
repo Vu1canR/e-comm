@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Comment;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Session;
 class CommentsController extends Controller
 {
 
-	public function store(Product $product){
+	public function store($storeCode, Product $product){
 		try{
 
 			$userId = Auth::id();
@@ -22,6 +23,16 @@ class CommentsController extends Controller
 		}
 
 		return back();
+	}
+
+	public function update(Request $request){
+		$comment = Comment::find($request->id);
+		$comment->body = $request->body;
+		$comment->save();
+		$body = $comment->body;
+		$id = $request->id;
+		
+        return compact('body', 'id');
 	}
 
 }
