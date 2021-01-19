@@ -13,6 +13,13 @@
 <div id="app">
     @include('nav')
     <br>
+    <p>
+        <a href="/welcome">x-kom</a> >
+        <a href="/c/{{strtolower(str_replace(' ','-',$cat_obj->name))}}">{{$cat_obj->name}}</a> >
+        <a href="/c-{{$cat_obj->id}}/{{$subcat_obj->id}}-{{strtolower(str_replace(' ','-',$subcat_obj->name))}}">{{$subcat_obj->name}}</a>
+        <!-- <a href="/p/{{$subcat_obj->id}}-{{strtolower(str_replace(' ','-',$product_object->name))}}">{{$product_object->name}}</a> -->
+    </p>
+    <!-- <br> -->
         <product :product_object="{{$product_object}}" :product_comments="{{$comments}}"></product>
     <br><br>
     @include('footer')

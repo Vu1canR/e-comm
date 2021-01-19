@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<ul class="asrc">
-			<li v-for="(tab, index) in tabs" :key="index" :class="{'is-selected': tab.isSelected}">
+			<li v-for="(tab, index) in tabs" :key="index" :class="{'is-selected': tab.isSelected}" :id="tab.name.toLowerCase()">
 				<a :href="'#'+tab.name.toLowerCase()" @click="selectTab(tab)">{{tab.name}}</a>
 			</li>
 		</ul>

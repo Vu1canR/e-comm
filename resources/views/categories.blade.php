@@ -16,6 +16,7 @@
     @include('nav')
     <br>
     <div class="main-body">
+    <p><a href="/welcome">x-kom</a>><a href="/c/{{strtolower(str_replace(' ','-',$chosen_category->name))}}">{{$chosen_category->name}}</a></p>
         <div class="left">
             <ul class="cat-ul">
             @foreach($categories as $category)

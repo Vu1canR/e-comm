@@ -121,12 +121,12 @@
         <div>
             <div>
                 <tabs>
-                    <tab name="About" :selected="true">
+                    <tab name="About" :selected="true" id="werwear">
                         <h2>Best selling console of all time</h2>
 
                     </tab>
                     <tab name="Specifications">
-                        <h1>Specifications:</h1>
+                        <h2>Specifications:</h2>
                         <table class="specs-table">
                             <tr
                                 v-for="spec in product_object.specs"
@@ -143,7 +143,7 @@
                     </tab>
                     <tab name="Comments">
                         <section class="comments">
-                            <br />
+                            <br>
                             <div>
                                 <ul class="com-list">
                                     <li v-for="(comment, index) in comments" class="comments-list" :key="comment.id">
@@ -169,7 +169,7 @@
                                         </div>
                                         <div class="quote-edit" v-show="!showEdit[index].editing">
                                             <span>Quote</span>
-                                            <span @click="editComment(index)">Edit</span>
+                                            <span v-if="isLogged(comment.user_id)" @click="editComment(index)">Edit</span>
                                         </div>
                                         <div v-show="showEdit[index].editing" class="cedit-div">
                                             <form :action="'/p/' + product_object.id" method="post">
@@ -241,6 +241,12 @@ export default {
         };
     },
     methods: {
+        isLogged(user_id){
+            if (this.user != null){
+                return this.user.id == user_id
+            }
+
+        },
         inCart() {
             for (let i = 0; i < this.cart.length; i++) {
                 if (this.cart[i].name == this.product_object["name"])
@@ -310,7 +316,7 @@ export default {
     },
 
     mounted() {
-        this.tabs = document.getElementsByClassName("asrc")[0].children;
+        // this.tabs = document.getElementsByClassName("asrc")[0].children;
         if (localStorage.getItem("cart") != null) {
             this.cart = JSON.parse(localStorage.getItem("cart"));
         }

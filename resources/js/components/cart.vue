@@ -5,7 +5,7 @@
                 <i class="fa fa-shopping-cart"></i>
                 <span class="counter" v-show="isEmpty" v-text="isEmpty"></span>
             </div>
-            <div class="text">Корзина</div>
+            <div class="text">Cart</div>
         </a>
         <!-- <p v-text="inConsole()"></p> -->
     </div>

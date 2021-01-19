@@ -54,8 +54,8 @@ class OrderController extends Controller
 
     public function cancelOrder(Order $order){
         return $order;
-        $order = Order::find($order->id)->delete();
-
+        $order = Order::find($order->id);
+        $order->status = 1; 
         return view('profile');
         
     }

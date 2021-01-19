@@ -1,5 +1,5 @@
 <template>
-	<div class="top-sells">
+	<div class="recenly-added">
 		<div v-for="product in products" :key="product.id" class="product-div">
 			<a :href="'/p/'+ product.store_code + '-' + product.name.replace(/ /g,'-').toLowerCase()">
 				<div class="pro-image">
@@ -32,7 +32,7 @@ export default {
             this.$root.$emit("addProduct", {
                 store_code: product["store_code"],
                 name: product["name"],
-                quantity: 1,
+                quantity: this.quantity,
                 price: product["price"]
             });
         },

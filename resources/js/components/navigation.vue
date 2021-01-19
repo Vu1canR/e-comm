@@ -21,28 +21,6 @@
 					</div>	
 				</div>
 			</li>
-			<!-- <i class="fal fa-angle-right"></i> -->
-			<!-- <li class="nav-list fx" @mouseover="darkenBody()" @mouseleave="lightenBody()">
-				<a href="/c/laptops-and-tablets" class="cat-link">
-					<i class="fa fa-laptop fa-2x" aria-hidden="false"></i>
-					<span><span>Ноутбуки</span>и планшеты</span>
-					<i class="fas fa-caret-down" aria-hidden="true"></i>
-				</a>
-				<div class="cat-drdown-div">
-					<div>
-						<div class="cat-inside">Категории в разделе:</div>
-						<ul>
-							<li><a href="#">Laptops/Notebooks/Ultrabooks<i class="fa fa-caret-right fa-xs" aria-hidden="true"></i></a></li>
-							<li><a href="#">Tablets<i class="fa fa-caret-right fa-xs" aria-hidden="true"></i></a></li>
-							<li><a href="#">2-in-1 laptops<i class="fa fa-caret-right fa-xs" aria-hidden="true"></i></a></li>
-							<li><a href="#">Bags and cases<i class="fa fa-caret-right fa-xs" aria-hidden="true"></i></a></li>
-							<li><a href="#">Laptop accessories<i class="fa fa-caret-right fa-xs" aria-hidden="true"></i></a></li>
-						</ul>
-					</div>	
-				</div>
-			</li> -->
-						
-			
 		</ul>	
 		
 		<p v-bind="inConsole()"></p>
@@ -68,6 +46,7 @@ export default {
 				"fas fa-compact-disc fa-2x",
 				"fas fa-headphones-alt fa-2x"
 			],
+			timer: 0,
 			// categories: [
 			// 	"Laptops and tablets",
 			// 	"Smartphones and accessories",
@@ -87,12 +66,14 @@ export default {
 			
 		},
 		darkenBody(){
-			setTimeout(() => {
-				document.getElementById('app').className = 'darken', document.getElementsByClassName('auth')[0].className = 'auth-m' }, 600)
+			
+			document.getElementById('app').className = 'darken', 
+			document.getElementById('auth').className = 'auth-m'
 			// document.getElementById('app').className = 'darken';
 			// document.getElementsByClassName('auth')[0].className = 'auth-m';
         },
 		lightenBody(){
+			
 			// setTimeout(() => {
 			// 	document.getElementById('app').className = '', document.getElementsByClassName('auth')[0].className = 'auth-m' }, 350)
 			document.getElementById('app').className = '';

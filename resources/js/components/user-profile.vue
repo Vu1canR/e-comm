@@ -18,7 +18,11 @@
 			<div class="orders">
 				<div v-for="order in orders" class="order-div">
 					<div>
-						<p>№ {{order.id}}</p>
+						<p>№ {{order.id}} &nbsp;
+							<span v-if="order.is_delivered == 1" style="color: green">Delivered</span>
+							<span v-else-if="order.is_delivered == 0 && order.status == 1" style="color: grey">Canceled</span>
+							<span v-else style="color: red">In progress</span>
+						</p>
 						<table>
 							<tr class="row">
 								<th class="thead">Store code</th>
@@ -39,7 +43,7 @@
 							<button class="od-btn"><a href="#">Details</a></button>
 							<form :action="'/profile/' + order.id" method="POST">
 							<input type="hidden" name="_token" :value="csrf">
-							<button class="od-btn" type="submit" @click="getId()">Cancel</button>
+							<button v-if="order.is_delivered == 0" class="od-btn" type="submit" @click="getId()">Cancel</button>
 							</form>
 							<!-- <button class="od-btn" @click="getId(order.id)">Cancel</button> -->
 							

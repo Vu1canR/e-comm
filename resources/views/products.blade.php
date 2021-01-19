@@ -15,10 +15,14 @@
 
 @include('nav')
 
-<br>
-<div class="route-nav" id="temp">x-kom>Компьютерные комплектующие></div>
+
 <br>
 	<div class="main-body">
+	<p>
+		<a href="/welcome">x-kom</a> >
+		<a href="/c/{{strtolower(str_replace(' ','-',$cat_obj->name))}}">{{$cat_obj->name}}</a> >
+		<a href="/c-{{$cat_obj->id}}/{{$subcat_obj->id}}-{{strtolower(str_replace(' ','-',$subcat_obj->name))}}">{{$subcat_obj->name}}</a>
+	</p>		
 		<div class="main-filters">
 			<div>
 				Материнские платы

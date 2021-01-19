@@ -13,7 +13,9 @@
 				<tr class="row" v-for="(row, index) in cart" :key="index">
 					<td v-text="row.store_code"></td>
 					<td v-text="row.name" class="p-name"></td>
-					<td><input type="number" size="1" :value="row.quantity" @blur="updateQuantity($event.target.value, index)"></td>
+					<td>
+						<input type="number" size="1" :value="row.quantity" @blur="updateQuantity($event.target.value, index)">
+					</td>
 					<td v-text="row.price + ' TJS'"></td>
 					<td v-text="row.quantity*row.price +' TJS'"></td>
 					<!-- <td v-for="item in row" v-if="item == quantity">
@@ -35,8 +37,8 @@
 				</tr>
 			</table>
 			<button type="submit" class="subm" @click.prevent="sendCart()">Place order</button>
-			
 		</div>
+		<p v-text="totalPrice()"></p>	
 	</form>	  
 </div>	
 </template>
@@ -57,32 +59,41 @@ export default {
   data() {
     return {
 		cart: [],
-        total: '',
-        displayCart: false,
 		quantity: '',
 		csrf: document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-		arr: [1, 2, 3, 4],
-		// final_price: '',
 		rotate: true,
 		my_array: [],
-		my_data: 1,
-		response: []
+		total: 0
+
     };
   },
-  methods: {
+  	methods: {
+
 	updateQuantity(value, index){
-			this.my_array = [value, index] 
-			this.$root.$emit("updateQuantity", this.my_array)
-			this.cart[index].quantity = value
-            // console.log(value, index)
-        },
-	//  totalPrice(){
+		this.my_array = [value, index] 
+		this.$root.$emit("updateQuantity", this.my_array)
+		this.cart[index].quantity = value
 		
-	// 	this.cart.forEach(row => {
-	// 		this.total += row.quantity*row.price
-	// 		console.log(this.i)
-	// 	});
-	//  } ,
+	},
+	totalPrice(){
+		let tempPrice = 0
+	
+		JSON.parse(localStorage.getItem("cart")).forEach(row => {
+			tempPrice += row.price*row.quantity
+		});
+			this.total = tempPrice
+			// console.log(this.totalAmount)
+	// return typeof(JSON.parse(localStorage.getItem("cart")))
+
+		// for (let index = 0; index < this.cart.length; index++) {
+		// 		tempPrice += this.cart[index].price
+		// 		console.log(tempPrice)
+				
+		// 	}
+		// 	this.total = tempPrice
+			
+	},
+
 	refCart(tag){
 		tag.style.transform = "rotate(180eg)";
 		tag.style.transition = "0.4s"
@@ -108,12 +119,21 @@ export default {
 				// location.href = "/cart";
 			 
             .catch(error => console.log(error));
-	}	
-  },
-  created() {
-    if (localStorage.getItem("cart") != null)
-	  this.cart = JSON.parse(localStorage.getItem("cart"));
-  },
+		}	
+	},
+	  
+	created() {
+		if (localStorage.getItem("cart") != null)
+		this.cart = JSON.parse(localStorage.getItem("cart"));
+		// this.totalPrice()
+	},
+	
+	watch:{
+		cart(){
+			console.log('Value changed')
+			// this.totalPrice()
+		}
+	}
 };
 </script>
 

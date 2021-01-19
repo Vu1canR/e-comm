@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Validator;
-use App\subcategory;
+use App\Subcategory;
 use App\Product;
 use App\Spec;
 use App\Category;
@@ -15,17 +15,22 @@ use Illuminate\Support\Facades\Session;
 
 
 class ProductController extends Controller
-{
+{   
+    public function __construct()
+    {
+        // $this->middleware()->except(['create', 'store', ])
+    }
     public function homeProducts(){
         $products = Product::inRandomOrder()->limit(5)->get();
-
-        return view('welcome', compact('products'));
+        $recent = Product::orderBy('id', 'desc')->take(5)->get();
+        return view('welcome', compact('products', 'recent'));
     }
 
-    public function showAll($catId, $subCatId, $subcat){
-        $products = Product::where('sub_category_id', $subCatId)->get();
-
-        return view('products', compact('products'));
+    public function showAll($catId, $subcatId, $subcat){
+        $products = Product::where('sub_category_id', $subcatId)->get();
+        $cat_obj = Category::find($catId);
+        $subcat_obj = Subcategory::find($subcatId);
+        return view('products', compact('products', 'cat_obj', 'subcat_obj'));
     }
 
     public function show($store_code, $product){
@@ -35,8 +40,10 @@ class ProductController extends Controller
                                             ->with('specs')->first();
         $comments = Comment::where('product_id', $product_object->id)
                                         ->with('user')->orderBy('created_at', 'asc')->get();
+        $cat_obj = Category::find($product_object->category_id);
+        $subcat_obj = Subcategory::find($product_object->sub_category_id);                            
       
-        return view('product', compact('comments', 'product_object', 'product'));
+        return view('product', compact('comments', 'product_object', 'product', 'cat_obj', 'subcat_obj'));
     }
 
     public function create(Request $request){
@@ -169,7 +176,7 @@ class ProductController extends Controller
         $search = $request->user_input;
         $categories = Category::all();
         $result = Product::where('name', 'like', '%'.$search.'%')->paginate(5);
-
+        // return $result;
         return view('search-result', compact('result', 'categories'));
     }
 

@@ -22,7 +22,7 @@
 			</div>
 
 		<div class="header-right">
-			<div class="auth">
+			<div class="auth" id="auth">
 				
 				
 				
@@ -54,7 +54,7 @@
 					</div>
 				</div>	
 			</div>
-			<div class="header-wrapper" v-bind="inConsole()">
+			<div class="header-wrapper">
 				<cart></cart>
 			</div>		
 			
@@ -70,15 +70,11 @@ export default {
 	},
 	data() {
 		return {
-			// auth: 'auth',
-			message: 'Da fuk',
 			user: window.laravel.auth,
 		};
 	},
 	methods: {
-		inConsole(){
-
-		},
+		
 	},
 };
 </script>
