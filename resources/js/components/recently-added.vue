@@ -32,7 +32,7 @@ export default {
             this.$root.$emit("addProduct", {
                 store_code: product["store_code"],
                 name: product["name"],
-                quantity: this.quantity,
+                quantity: 1,
                 price: product["price"]
             });
         },

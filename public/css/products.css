@@ -1,6 +1,9 @@
 @import "nav.css";
 @import "footer.css";
 
+*{
+	box-sizing: border-box;
+}
 .main-body,
 .route-nav{
 	margin: 0 auto;
@@ -12,7 +15,7 @@
 	
 	width: 29%;
 	display: inline-block;
-	box-sizing: border-box;
+	/* box-sizing: border-box; */
 	border:1px solid lightgrey;
 	border-radius: 7px;
 
@@ -289,3 +292,10 @@ section label:hover{
 	font-size: 20px;
 }
 
+
+.left{
+    display: inline-block;
+    width: 29%;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+}

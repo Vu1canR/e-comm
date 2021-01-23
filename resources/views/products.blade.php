@@ -108,6 +108,7 @@
 
 		</div>
 	</div>
+	<br>
 	@include('footer')
 </div>
 @include('scripts')

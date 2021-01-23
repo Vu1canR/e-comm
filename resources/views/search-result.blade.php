@@ -16,46 +16,47 @@
 <div class="route-nav">x-kom>Компьютерные комплектующие></div>
 <br>
 	<div class="main-body">
-		<div class="sidecat-nav">
-            <ul class="cat-ul">
-            @foreach($categories as $category)
-            <!-- <p>{{$category->name}}</p> -->
-                <li class="cat-list"> 
+		<div class="left">
+			<ul class="cat-ul">
+			@foreach($categories as $category)
+			<!-- <p>{{$category->name}}</p> -->
+				<li class="cat-list"> 
 					<a class="cat-link" href="/c/{{strtolower(str_replace(' ','-',$category->name))}}">{{$category->name}}</a>
-                </li>
-            @endforeach    
-            </ul>
-  	    </div>
-		<div class="products-list">
-		<div class="filter-view">
-			<div>
-				<ul id="view-options">
-					<li><i class="fas fa-th-large"></i></li>	
-					<li><i class="fas fa fa-th-list"></i></li>
-					<li><i class="fas fa-list"></i></li>
-				</ul>
-			</div>
-			<div>
-				<select id="sort-by" name="sort-by">
-					<option value="ascending">по возрастанию</option>
-					<option value="descending">по убыванию</option>
-					<option value="popularity">по популярности</option>
-					<option value="a-z">название а-я</option>
-					<option value="z-a">название я-а</option>
-				</select>
-			</div>
-			<div class="page-nav">
-				<a class="h-next"><</a>
-				<input type="text" name="page" id="page" autocomplete="off">
-				<a class="h-prev">></a>
-			</div>
+					
+				</li>
+			@endforeach    
+			</ul>
 		</div>
-		<!-- items list comes here -->
-			
-		
+		  
+		<div class="products-list">
+			<div class="filter-view">
+				<div>
+					<ul id="view-options">
+						<li><i class="fas fa-th-large"></i></li>	
+						<li><i class="fas fa fa-th-list"></i></li>
+						<li><i class="fas fa-list"></i></li>
+					</ul>
+				</div>
+				<div>
+					<select id="sort-by" name="sort-by">
+						<option value="ascending">по возрастанию</option>
+						<option value="descending">по убыванию</option>
+						<option value="popularity">по популярности</option>
+						<option value="a-z">название а-я</option>
+						<option value="z-a">название я-а</option>
+					</select>
+				</div>
+				<div class="page-nav">
+					<a class="h-next"><</a>
+					<input type="text" name="page" id="page" autocomplete="off">
+					<a class="h-prev">></a>
+				</div>
+			</div>
+			<!-- items list comes here -->
+				<products-list :products="{{$result}}"></products-list>
+		</div>
 	</div>
-	</div>
-	<test :products="{{$result}}"></test>
+
 
 
 	@include('footer')

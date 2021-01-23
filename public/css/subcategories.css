@@ -1,16 +1,6 @@
 @import "nav.css";
 @import "footer.css";
 
-.cat-ul{
-    padding: 0;
-}
-
-.cat-list{
-    list-style: none;
-    padding-left: 20px;
-    line-height: 25px;
-}
-
 .chosen-cat{
     padding: 0;
 }
@@ -47,6 +37,17 @@
     width: 29%;
     border: 1px solid lightgrey;
     border-radius: 5px;
+    
+}
+
+.cat-ul{
+    padding: 0;
+}
+
+.cat-list{
+    list-style: none;
+    padding-left: 20px;
+    line-height: 25px;
 }
 
 .right{

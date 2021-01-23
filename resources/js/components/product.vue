@@ -242,9 +242,9 @@ export default {
     },
     methods: {
         isLogged(user_id){
-            if (this.user != null){
-                return this.user.id == user_id
-            }
+            if (this.user != null)
+                    return this.user.id == user_id
+            
 
         },
         inCart() {

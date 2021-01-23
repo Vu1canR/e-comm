@@ -34,11 +34,14 @@ class SessionsController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (!Auth::attempt($credentials)) {
-            return "something is wrong";
-        }
-		$products = Product::inRandomOrder()->limit(5)->get();
+            return redirect()->back();
+		}
+		
+		else
+			return redirect('/welcome');
+		// $products = Product::inRandomOrder()->limit(5)->get();
 
-        return view('welcome', compact('products'));
+        // return view('/welcome', compact('products'));
     }
 
     

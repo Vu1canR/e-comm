@@ -2720,9 +2720,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     isLogged: function isLogged(user_id) {
-      if (this.user != null) {
-        return this.user.id == user_id;
-      }
+      if (this.user != null) return this.user.id == user_id;
     },
     inCart: function inCart() {
       for (var i = 0; i < this.cart.length; i++) {
@@ -2817,9 +2815,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
 //
 //
 //
@@ -2945,7 +2940,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$root.$emit("addProduct", {
         store_code: product["store_code"],
         name: product["name"],
-        quantity: this.quantity,
+        quantity: 1,
         price: product["price"]
       });
     }
@@ -40557,52 +40552,32 @@ var render = function() {
             }
           },
           [
-            _c("img", {
-              staticClass: "item-photo",
-              attrs: {
-                images: "",
-                src:
-                  "/images/" +
-                  product.sub_category_id +
-                  "/" +
-                  product.images.split("|")[0]
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "ul",
-              { staticClass: "specs" },
-              _vm._l(product.description.split("\n"), function(line) {
-                return _c("li", { domProps: { textContent: _vm._s(line) } })
+            _c("div", { staticClass: "content" }, [
+              _c("img", {
+                staticClass: "item-photo",
+                attrs: {
+                  images: "",
+                  src:
+                    "/images/" +
+                    product.sub_category_id +
+                    "/" +
+                    product.images.split("|")[0]
+                }
               }),
-              0
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "price-cart" }, [
-              _c("div", { staticClass: "price" }, [
-                _c("strong", [_vm._v(_vm._s(product.price) + "TJS")])
-              ]),
               _vm._v(" "),
-              _c("div", { staticClass: "exp" }, [
-                _c("div", { staticClass: "cart" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "to-cart",
-                      attrs: { title: "Add to cart" },
-                      on: {
-                        click: function($event) {
-                          $event.stopPropagation()
-                          $event.preventDefault()
-                          return _vm.addItem(product)
-                        }
-                      }
-                    },
-                    [_c("i", { staticClass: "fas fa-shopping-cart" })]
-                  )
-                ]),
-                _vm._v(" "),
-                _vm._m(0, true)
+              _vm._m(0, true),
+              _vm._v(" "),
+              _c(
+                "ul",
+                { staticClass: "specs" },
+                _vm._l(product.description.split("\n"), function(line) {
+                  return _c("li", { domProps: { textContent: _vm._s(line) } })
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "price-cart" }, [
+                _c("strong", [_vm._v(_vm._s(product.price) + "TJS")])
               ])
             ])
           ]
@@ -40617,10 +40592,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "compare-div" }, [
-      _c("button", { attrs: { title: "Add to comparison" } }, [
-        _c("i", { staticClass: "fas fa-balance-scale" })
-      ])
+    return _c("div", { staticClass: "rate" }, [
+      _c("a", { attrs: { href: "" } }, [_vm._v("☆★")])
     ])
   }
 ]

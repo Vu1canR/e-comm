@@ -51,9 +51,9 @@
 			</div>
 			
 			
-			<button class="h-prev" onclick="shittyjs()"><i class="fas fa-angle-right"></i></button>
+			<button class="h-prev"><i class="fa fa-chevron-left"></i></button>
+			<button class="h-next" id="next"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
 		
-			<button class="h-next" id="next"><i class="fas fa-angle-left"></i></button>
 		</div>
 		
 	</div>

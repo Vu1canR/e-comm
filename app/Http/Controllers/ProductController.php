@@ -16,10 +16,13 @@ use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {   
+
     public function __construct()
     {
-        // $this->middleware()->except(['create', 'store', ])
+        $this->middleware(['auth', 'admin'])->only(['create', 'store']);
+        // $this->middleware('admin')->only(['create', 'store']);
     }
+
     public function homeProducts(){
         $products = Product::inRandomOrder()->limit(5)->get();
         $recent = Product::orderBy('id', 'desc')->take(5)->get();
@@ -175,7 +178,7 @@ class ProductController extends Controller
     public function search(Request $request){
         $search = $request->user_input;
         $categories = Category::all();
-        $result = Product::where('name', 'like', '%'.$search.'%')->paginate(5);
+        $result = Product::where('name', 'like', '%'.$search.'%')->get();
         // return $result;
         return view('search-result', compact('result', 'categories'));
     }

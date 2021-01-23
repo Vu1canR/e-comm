@@ -40,9 +40,9 @@
   	    </div>
 
         <div class="right">
-            <ul class="categories">
+            <div class="categories">
                 @foreach($chosen_category['subcategories'] as $subcategory)
-                    <li class="sub-cat-list">
+                    <div class="sub-cat-list">
                         <a href="/c-4/{{$subcategory->id}}-{{strtolower(str_replace(' ','-',$subcategory->name))}}" style="text-decoration: none; color: black;">
                             <div>
                             <div>
@@ -52,9 +52,9 @@
                             </div>
                             <div class="amount"></div>
                         </a>
-                    </li>
+                    </div>
                 @endforeach
-            </ul>
+            </div>
         </div>
         
         

@@ -27,9 +27,9 @@ class RegistrationController extends Controller
 
         ]);
 
-        $file = $request->file('picture');
-        $picture_name = $file->getClientOriginalName();
-        $file->move(public_path('/images/profile-pictures'), $picture_name);
+        // $file = $request->file('picture');
+        // $picture_name = $file->getClientOriginalName();
+        // $file->move(public_path('/images/profile-pictures'), $picture_name);
             
         
 
@@ -37,7 +37,7 @@ class RegistrationController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'picture' => $picture_name
+            // 'picture' => $picture_name
         ]);
 
         
